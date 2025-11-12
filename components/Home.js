@@ -11,15 +11,15 @@ function Home() {
   const [moviesData, setMoviesData] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/movies`)
+    fetch(`https://my-moviz-back-xi.vercel.app/movies`)
       .then((response) => response.json())
       .then((data) => {
         const formattedData = data.movies.map((movie) => {
           const poster = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
 
-          let overview = movie.overview
-          overview.length > 250 ? overview = overview.substring(0, 250) + `...` : overview
-          return { title: movie.title , poster, voteAverage: movie.vote_average, voteCount: movie.vote_count, overview }
+          let overview = movie.overview;
+          overview.length > 250 ? (overview = overview.substring(0, 250) + `...`) : overview;
+          return { title: movie.title, poster, voteAverage: movie.vote_average, voteCount: movie.vote_count, overview };
         });
         console.log(data);
         setMoviesData(formattedData);
